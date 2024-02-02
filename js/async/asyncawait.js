@@ -14,7 +14,7 @@ async function main(){
 main();
 
 
-// printing withi=out await 
+// printing without await 
 
 
 function ronisAsyncFunction1(){
@@ -52,4 +52,3 @@ async function main2(){
 }
 main2();
 
-console.log("Hello")

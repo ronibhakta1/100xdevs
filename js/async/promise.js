@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-// my own ansync function
+// my own ansync function ugly way
 function RonisReadFile(cd){
     console.log("Inside  Readfile function");
     fs.readFile("./js/async/a.txt","utf-8", function(err,data){

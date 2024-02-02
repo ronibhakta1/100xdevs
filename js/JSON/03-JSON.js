@@ -1,13 +1,13 @@
 function jsonMethods(jsonString) {
-  console.log("Original JSON String:", jsonString);
+  console.log("\nOriginal JSON String:", jsonString);
 
   // Parsing JSON string to JavaScript object
   let parsedObject = JSON.parse(jsonString);
-  console.log("After JSON.parse():", parsedObject);
+  console.log("\nAfter JSON.parse():", parsedObject);
 
   // Stringifying JavaScript object to JSON string
   let jsonStringified = JSON.stringify(parsedObject);
-  console.log("After JSON.stringify():", jsonStringified);
+  console.log("\nAfter JSON.stringify():", jsonStringified);
 }
 
 // Example Usage for JSON Methods
