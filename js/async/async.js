@@ -6,5 +6,5 @@ for (let index = 0; index < 10000000 ; index++) {
 console.log(a);
 }
 
-setTimeout(fun1,1000);
+setTimeout(fun1,10000);
 console.log("hello there");

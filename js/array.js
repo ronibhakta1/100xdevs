@@ -10,8 +10,6 @@ for (let index = 0; index < array.length/2; index++) {
 console.log(array)
 
 
-
-
 let aaaaaa = [11, 12, 13,11,23,42,54, 14, 15, 16];
 
 for (let index = 0; index < (aaaaaa.length / 2); index++) {
