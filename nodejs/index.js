@@ -1,43 +1,88 @@
-const express = require("express");
+// node js part 3 
+
+const express = require('express')
+const app = express();
 const port = 3000;
-const app =express();
-// console.log(app); // this will print all the modules can be used using express, which is app as we mentioned here !
-const bodyParser = require("body-parser");
 
-app.use(bodyParser.json());
+// This is "In memory" database
+const user = [{
+    name: "roni",
+    kidenys: [{
+        healthy: false
+    }]
+}]
+let newkidneys = [];
 
-app.get('/',(req ,res)=>{
-    res.send("Hello World hey people");
-
-
-})
-
-app.post('/auth-data',(req ,res)=>{
-    console.log(req.headers.authorization); // this will only return only the specific data required form the front-end
-    console.log(req.headers);// this will return an object with all other data
-    res.send("<b>Hello World hey people</b>");
-
-})
-
-app.post("/conversations", (req,res)=>{
-    res.send('<body>{msg: "hello"}</body>')
-    console.log("success");
-    console.log(req.body); /// this will out put undefined as an output
-    
-    console.log("successfully resieved the body packets for the post end");
-    console.log("success");
-
-    
-})
-
-app.post("/body-parser",(req,res)=>{
-    console.log(req.body); // o/p : { msg: '2+2 =?' }  -> object
-    console.log(req.body.msg); //o/p : 2+2 =?    -> string
+app.get("/", (req, res) => {
+    const kidn = newkidneys.length;
+    const roniskidney = user[0].kidenys;
+    const numofkidneys = roniskidney.length;
+    let numofhealthykidneys = 0;
+    for (let index = 0; index < roniskidney.length; index++) {
+        if (roniskidney[index].healthy) {
+            numofhealthykidneys = numofhealthykidneys + 1;
+        }
+    }
+    const numofunhealthykidneys = numofkidneys - numofhealthykidneys;
     res.json({
-        output : "4"
+        numofkidneys,
+        numofhealthykidneys,
+        numofunhealthykidneys,
+        kidn
+    })
+
+    // console.log(user[0].kidenys)
+
+});
+
+app.use(express.json()); //used for getting data from body in josn format
+
+app.post('/', (req, res) => {
+    const ishealthy = req.body.ishealthy;
+    user[0].kidenys.push({
+        healthy: ishealthy
+    })
+    res.json({
+        msg: 'Done!'
     })
 })
 
-app.listen(port)
+app.put('/', (req, res) => {
+    for (let index = 0; index < user[0].kidenys.length; index++) {
+        user[0].kidenys[index].healthy = true;
+    }
+    res.json({});
+})
 
-/// use node --watch index.js to wtart the server instead of npm start
+app.delete('/', (req, res) => {
+    if (thekidneyishealthy()) {
+        for (let index = 0; index < user[0].kidenys.length; index++) {
+            if (user[0].kidenys[index].healthy) {
+                newkidneys.push({
+                    ishealthy: true
+                })
+            }
+        }
+        user[0].kidenys = newkidneys;
+
+        res.json({ msg: "Done!", newkidneys })
+        console.log("this is old user kideney" + user[0].kidenys + "this is tempo kidney" + newkidneys);
+    }
+    else {
+        res.status(411).json({
+            msg: "You have no unhealthy kidenys"
+        })
+    }
+})
+
+function thekidneyishealthy() {
+    let thekidneyishealthyornot = false;
+    for (let index = 0; index < user[0].kidenys.length; index++) {
+        if (!user[0].kidenys[index].healthy) {
+            thekidneyishealthyornot = true;
+        }
+    }
+    return thekidneyishealthyornot;
+}
+
+app.listen(port);
