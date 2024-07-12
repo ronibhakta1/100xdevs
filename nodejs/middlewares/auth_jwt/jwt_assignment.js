@@ -23,3 +23,8 @@ function signJwt(username, password){
 const out =signJwt("ronigmail.com", "6hdfsgdgd");
 console.log(out)
 // app.listen(port);
+
+// Here we have created an funtion which creates a jwt token using jsonwebtoken, and a zod lib to check wheather the user is giving us the right inputs 
+//after that we have successfully created a jwt token using the key and the inputs
+
+function decodeJwt(token)

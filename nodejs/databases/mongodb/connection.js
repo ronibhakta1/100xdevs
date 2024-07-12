@@ -3,7 +3,8 @@ const { string } = require("zod");
 
 // connection made using the cluster in compass on mongodb site to mongodb compass
 
-mongoose.connect("mongodb+srv://roni:9850097464Roni@cluster0.nrqgn2x.mongodb.net/userappnew",);
+mongoose.connect("<use the token>",);
+// if i keep the token its getting exposed on git hub repos so while using it just add it and then delete
 
 // table schema is created here
 

@@ -5,8 +5,10 @@ const express = require('express');
 const app = express();
 // connection made using the cluster in compass on mongodb site to mongodb compass
 
-mongoose.connect("mongodb+srv://roni:9850097464Roni@cluster0.nrqgn2x.mongodb.net/userappnew",);
-// in the URL ending we have declared the database name 
+mongoose.connect("<use the token>",);
+// if i keep the token its getting exposed on git hub repos so while using it just add it and then delete
+
+// in the URL ending we have declared the database name after the / where it ends the url
 
 app.use(express.json());
 
