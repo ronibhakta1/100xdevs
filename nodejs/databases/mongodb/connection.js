@@ -14,9 +14,9 @@ const User = mongoose.model('users', {
 });
 // data data sent to the table 
 const user = new User({
-    name: 'Roni Bhakta',
-    email: 'ronibhakta1@gmail.com',
-    password: '12345678'
+    name: 'Rakesh Bhakta',
+    email: 'bhakta1@gmail.com',
+    password: '1234678'
 });
 
 // push the data to the database through the link present in the mongoose connect
