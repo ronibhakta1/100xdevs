@@ -86,10 +86,16 @@ app.post("/verifyUser",async (req,res)=>{
             
         } catch (error) {
             res.status(400).json({
-                msg:"error occured while uploading data to database"
+                msg:"Wrong data inputs !!"
             });
         }
     }
+})
+
+app.use((err, req, res, next)=>{
+    res.json({
+        msg:"Sorry something is up with the server in the backend !!"
+    })
 })
 
 app.listen(port, () => {
