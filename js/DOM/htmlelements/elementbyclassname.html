@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="innerclass"> hello </div>
+    <div class="innerclass">
+        hello world!
+    </div>
+    <p id="innner"></p>
+    <script>
+        const x= document.getElementsByClassName("innerclass");
+        document.getElementById("innner").innerHTML = "first div " + x[0].innerHTML;
+    </script>
+</body>
+</html>

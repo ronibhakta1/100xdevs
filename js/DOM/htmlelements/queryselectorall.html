@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        div 1
+    </div>
+    <p class="intro">hello</p>
+    <div>
+        div 2
+    </div>
+    <p class="subheading" >hello world</p>
+    <div> div 3</div>
+    <div id="mydiv" style="border:1px solid black; padding:8px">
+        <h2 class="example"> this is the heading</h2>
+        <p class="example">a para</p>
+        <p class="example">
+            a para 2
+        </p>
+    </div>
+    <p id="demo"></p>
+    <script>
+        const x = document.querySelectorAll('p.intro');
+        x.forEach(xy => xy.style.backgroundColor = 'green');
+
+        const matches =element.querySelectorAll("p.intro, p.subheading");
+        const element = document.getElementById("mydiv");
+        const list =element.querySelectorAll(".example");
+        document.getElementById("demo").innerHTML = list.length;
+    </script>
+
+</body>
+</html>

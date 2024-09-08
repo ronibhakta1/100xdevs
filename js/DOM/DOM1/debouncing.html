@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input oninput="deboundingpopulate()" id="numm1" placeholder="num1" type="text"><br>
+    <input oninput="deboundingpopulate()"  id="numm2" placeholder="num2" type="text"><br>
+    <!-- <button onclick="debounding()">calculate sum</button> -->
+    <div id="finalsum"></div>
+
+    <script>
+        let timeout;
+        function deboundingpopulate(){
+            clearTimeout(timeout);
+            timeout = setTimeout(function(){
+                debounding()
+            }, 800);
+            
+        }
+        function  debounding(){
+            //global document variable
+            const a = document.getElementById("numm1").value;
+            const b = document.getElementById("numm2").value;
+            const element = document.getElementById("finalsum");
+
+            // string => number
+           // "1111" => 1111
+        fetch("http://localhost:3000/add-sum?a="+a+"&b="+b)
+        .then(function(res){
+        
+            res.text().then(function(ans){
+                document.getElementById("finalsum").innerHTML= ans;
+            })
+        })
+        }
+    </script>
+</body>
+
+</html>
