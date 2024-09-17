@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+    /// this is how react works under the hood 
+
+
+
+
+
+    <div id="buttonParent"></div>
+    <script>
+    /* The line `let state = { count: 0 }` is initializing a JavaScript object named `state` with a
+    property `count` set to the initial value of 0. This object is used to store the state of the
+    application, specifically the count value that is being displayed and updated in the button
+    component. By keeping track of the count value in the `state` object, the application can easily
+    manage and update the count value as needed. */
+
+    //state initialization
+        let state = {
+            count: 0
+        }
+
+        //defining the button component
+        function onbuttonPress(){
+            state.count++;
+            // this will also react will take care off
+            // buttonComponentReRender();
+        }
+
+        /* //defining the button component
+        //if we work in react we dont need to write this part its done by react library
+        function buttonComponentReRender(){
+            document.getElementById('buttonParent').innerHTML = "";
+            const component = buttonComponent(state.count);
+            document.getElementById("buttonParent").appendChild(component);
+        } */
+
+        // this is how my button componet will look like
+
+        function buttonComponent(count){
+            const button = document.createElement("button");
+            button.innerHTML = `Count ${count}`;
+            button.setAttribute('onclick', 'onbuttonPress()');
+            return button;
+            
+            //this will return the button element
+            //<button onclick="onbuttonRender"></button>
+            // counter 2
+            //</button>
+        }
+
+            //if we work in react we dont need to write this part its done by react library
+        // buttonComponentReRender();
+
+    </script>
+</body>
+</html>

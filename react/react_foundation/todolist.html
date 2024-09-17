@@ -1,0 +1,326 @@
+<!-- normal way to apporach the problem, but the new todo is not added to the list using this approach
+using innerHTML to add the new todo to the list we are unable to add the new todo to the list. -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function addtodo(){
+            const title = document.getElementById("title").value;
+            const description = document.getElementById("description").value;
+            console.log(title,description);
+            const container = document.getElementById("container").innerHTML=title +":"+ description;
+        }
+    </script>
+    <h1>Todo List</h1>
+    <input type="text" id="title" placeholder="title" />
+    <br /><br />
+    <input type="text" id="description" placeholder="description">
+    <br /><br />
+    <button onclick="addtodo()">Add todo</button>
+    <div id="container"></div>
+</body>
+</html> -->
+
+
+
+
+<!-- here we will be foucsing on adding a new string using a ` operator 
+using innerhtml 
+the ugly approach -->
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function addtodo(){
+            const title = document.getElementById("title").value;
+            const description = document.getElementById("description").value;
+            const container = document.getElementById("container").innerHTML=`<div>
+                <div>${title}</div>
+                <div>${description}</div>
+                <button>Mark as done</button>
+            </div>`;
+        }
+    </script>
+    <h1>Todo List</h1>
+    <input type="text" id="title" placeholder="title" />
+    <br /><br />
+    <input type="text" id="description" placeholder="description">
+    <br /><br />
+    <button onclick="addtodo()">Add todo</button>
+    <div id="container"></div>
+</body>
+</html> -->
+
+<!-- lets try another ugly or a little better way to create todo list and uppend a new list or element to 
+the new line keeping the last on in the top of it. -->
+<!-- document.createelement -->
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function addtodo() {
+            const title = document.getElementById("title").value;
+            const description = document.getElementById("description").value;
+            const original = document.getElementById("container").innerHTML;
+            const childdiv = document.createElement("div");
+            outerdiv.innerHTML = ("title:description");
+            document.getElementById("container").appendChild(childdiv);
+        }
+    </script>
+    <h1>Todo List</h1>
+    <input type="text" id="title" placeholder="title" />
+    <br /><br />
+    <input type="text" id="description" placeholder="description">
+    <br /><br />
+    <button onclick="addtodo()">Add todo</button>
+    <div id="container"></div>
+</body>
+
+</html>
+-->
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="title" placeholder="Todo title"></input> <br /><br />
+    <input type="text" id="description" placeholder="Todo description"></input> <br /><br />
+
+    <button onclick="addTodo()">Add todo</button>
+    <br /> <br />
+
+    <div id="todos">
+
+    </div>
+</body>
+<script>
+    let globalId = 1;
+
+    function markAsDone(todoId) {
+        const parent = document.getElementById(todoId);
+        parent.children[2].innerHTML = "Done!"
+    }
+
+    function createChild(title, description, id) {
+        const child = document.createElement("div");
+
+        const firstGrandParent = document.createElement("div");
+        firstGrandParent.innerHTML = title;
+
+        const secondGrandParent = document.createElement("div");
+        secondGrandParent.innerHTML = description;
+
+        const thirdGrandParent = document.createElement("button");
+        thirdGrandParent.innerHTML = "Mark as done";
+        thirdGrandParent.setAttribute("onclick", `markAsDone(${id})`);
+
+        child.appendChild(firstGrandParent);
+        child.appendChild(secondGrandParent);
+        child.appendChild(thirdGrandParent);
+        child.setAttribute("id", id);
+
+        return child;
+    }
+
+    function addTodo() {
+        const title = document.getElementById("title").value;
+        const description = document.getElementById("description").value;
+        const parent = document.getElementById("todos");
+        parent.appendChild(createChild(title, description, globalId++));
+    }
+</script>
+</html> -->
+
+<!-- 
+difrent approach to solve the problem to update the mark status using state /// this is the bad approach yet we can see 
+better solution in the further solutions. -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="title" placeholder="Todo title"></input> <br /><br />
+    <input type="text" id="description" placeholder="Todo description"></input> <br /><br />
+
+    /*<button onclick="addTodo()">Add todo</button> */
+    <br /> <br />
+
+    <div id="cointainer">
+
+    </div>
+    <script>
+        /* let globalId = 1;
+    
+        function markAsDone(todoId) {
+            const parent = document.getElementById(todoId);
+            parent.children[2].innerHTML = "Done!"
+        } */
+    
+        function createChild(title, description, id) {
+            const child = document.createElement("div");
+    
+            const firstGrandParent = document.createElement("div");
+            firstGrandParent.innerHTML = title;
+    
+            const secondGrandParent = document.createElement("div");
+            secondGrandParent.innerHTML = description;
+    
+            const thirdGrandParent = document.createElement("button");
+            thirdGrandParent.innerHTML = "Mark as done";
+            thirdGrandParent.setAttribute("onclick", `markAsDone(${id})`);
+    
+            child.appendChild(firstGrandParent);
+            child.appendChild(secondGrandParent);
+            child.appendChild(thirdGrandParent);
+            child.setAttribute("id", id);
+    
+            return child;
+        }
+    
+        /*function addTodo() {
+            const title = document.getElementById("title").value;
+            const description = document.getElementById("description").value;
+            const parent = document.getElementById("todos");
+            parent.appendChild(createChild(title, description, globalId++));
+        }*/
+    
+        // state will always use arrays 
+        // every element of state would have a title, description and a status
+        //this is a read only state which will be reflected on the FRONTEND
+    
+        function updatedomacctostate(state) {
+            const parent = document.getElementById("cointainer");
+            parent.innerHTML = "";
+            for (let i = 0; i < state.length; i++) {
+                const child = createChild(state[i].title, state[i].description, state[i].id);
+                parent.appendChild(child);
+            }
+        }
+        updatedomacctostate([{
+            title: "title",
+            description: "description",
+            id: 1
+        }]);
+    
+    </script>
+</body>
+
+
+</html> -->
+
+<!--  here we will try to get a better approach to solve the problem using the state and the updatedomacctostate function
+using api to get the list of todo list array with diffrent info in it
+just adding the updatedomacctostate function in the fetch funtion with timeinterval to get the updated list of todo
+list
+and the updatedomacctostate function will update the list of todo list in the frontend.
+still a ugly way if it is comapred to react  -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="title" placeholder="Todo title"></input> <br /><br />
+    <input type="text" id="description" placeholder="Todo description"></input> <br /><br />
+
+    <!-- <button onclick="addTodo()">Add todo</button> -->
+    <br /> <br />
+
+    <div id="cointainer">
+
+    </div>
+    <script>
+        let globalId = 1;
+    
+        function markAsDone(todoId) {
+            const parent = document.getElementById(todoId);
+            parent.children[2].innerHTML = "Done!"
+        } 
+
+        function createChild(title, description, id) {
+            const child = document.createElement("div");
+
+            const firstGrandParent = document.createElement("div");
+            firstGrandParent.innerHTML = title;
+
+            const secondGrandParent = document.createElement("div");
+            secondGrandParent.innerHTML = description;
+
+            const thirdGrandParent = document.createElement("button");
+            thirdGrandParent.innerHTML = "Mark as done";
+            thirdGrandParent.setAttribute("onclick", `markAsDone(${id})`);
+
+            child.appendChild(firstGrandParent);
+            child.appendChild(secondGrandParent);
+            child.appendChild(thirdGrandParent);
+            child.setAttribute("id", id);
+
+            return child;
+        }
+
+        /*function addTodo() {
+            const title = document.getElementById("title").value;
+            const description = document.getElementById("description").value;
+            const parent = document.getElementById("todos");
+            parent.appendChild(createChild(title, description, globalId++));
+        }*/
+
+        /*  state will always use arrays 
+        every element of state would have a title, description and a status
+        this is a read only state which will be reflected on the FRONTEND
+        */
+        function updatedomacctostate(state) {
+            const parent = document.getElementById("cointainer");
+            parent.innerHTML = "";
+            for (let i = 0; i < state.length; i++) {
+                const child = createChild(state[i].title, state[i].description, state[i].id);
+                parent.appendChild(child);
+            }
+        }
+        window.setInterval(async function () {
+            const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+            const json = await res.json();
+            updatedomacctostate(json);
+        }, 5000)
+
+
+    </script>
+</body>
+
+
+</html>
