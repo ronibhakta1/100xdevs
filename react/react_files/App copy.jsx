@@ -1,11 +1,12 @@
+/* eslint-disable react/prop-types */
 //hook 
 import {useState} from 'react';
-import PropTypes from 'prop-types';
 
 //state,component 
 // let state = {
 //   count : 0
 // }
+
 function App() {
   const [count, setCount] = useState(0);
   return (
